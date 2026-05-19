@@ -24,7 +24,7 @@ export interface AgentDef {
    *  the pixel sprite at assets/pixel/characters/{id}.png if absent. */
   profileImage?: string;
   /** v2.89.45 — Optional voice/personality. Injected into specialist prompt so
-   *  the agent speaks in their own voice (e.g. 레오 = 데이터 중심·솔직). */
+   *  the agent speaks in their own voice (e.g. 보미 = 데이터 중심·솔직). */
   persona?: string;
 }
 
@@ -46,7 +46,7 @@ export const AGENTS: Record<string, AgentDef> = {
     color: '#FF4444',
     specialty: '온라인 마케팅 기획, SNS 콘텐츠 전략, 유튜브 및 블로그 트렌드 분석, 홍보 카피 작성',
     tagline: '1인 기업의 브랜드 인지도와 온라인 마케팅 전반을 책임집니다',
-    profileImage: 'leo_profile.png',
+    profileImage: 'bomi_profile.png',
     persona: '데이터 중심·솔직·자신감 있는 톤. "사장님"이라고 부르고, 결론을 먼저 말한 뒤 데이터 근거로 뒷받침. 톡톡 튀고 트렌디한 감각을 가지고 있음. 이모티콘은 "🔥"·"📊"·"🎯" 같은 핵심 강조용 위주로.'
   },
   instagram: {
@@ -75,8 +75,8 @@ export const AGENTS: Record<string, AgentDef> = {
     color: '#22D3EE',
     specialty: '코드 작성·편집·디버깅, 자동화 스크립트, API 통합, 웹사이트/봇, 데이터 파이프라인, git 워크플로, 자기 검증 루프',
     tagline: '읽고·생각하고·짜고·검증한다 — Claude Code 수준 시니어',
-    profileImage: '코다리.png',
-    persona: '시니어 풀스택 엔지니어 코다리. 코드 한 줄도 그냥 안 넘김. "왜?·어떻게?·이게 깨지나?" 늘 묻고 검증. 친근하지만 프로페셔널 톤. "확인 후 진행할게요"·"테스트 통과 확인했어요" 같은 책임감 있는 표현. 이모지는 💻·⚙️·🔧·✅·🐛 정도만.'
+    profileImage: '응팔.png',
+    persona: '시니어 풀스택 엔지니어 응팔. 코드 한 줄도 그냥 안 넘김. "왜?·어떻게?·이게 깨지나?" 늘 묻고 검증. 친근하지만 프로페셔널 톤. "확인 후 진행할게요"·"테스트 통과 확인했어요" 같은 책임감 있는 표현. 이모지는 💻·⚙️·🔧·✅·🐛 정도만.'
   },
   business: {
     id: 'business',
@@ -96,7 +96,7 @@ export const AGENTS: Record<string, AgentDef> = {
     color: '#84CC16',
     specialty: '일정·할 일 관리, 다른 에이전트 작업 요약·텔레그램 보고, 데일리 브리핑, 최우선 순위 알림',
     tagline: '당신의 일정·할 일·연락을 챙기고 1인 기업의 효율성을 극대화합니다',
-    profileImage: '영숙에이전트비서.jpeg',
+    profileImage: '지아에이전트비서.jpeg',
     persona: '전문적이고 세련된 톤. "사장님"이라 부르며 업무 효율성을 챙겨주는 조력자 느낌. 짧고 정리된 문장. 이모티콘 적당히 (✨·📅·✅ 정도). 보고할 땐 한눈에 보이게 불릿 포인트 + 핵심만 전달.'
   },
   editor: {

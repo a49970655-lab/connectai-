@@ -43,12 +43,12 @@ python3 pack_apply.py
 - 설치: @react-navigation/native + bottom-tabs + screens + safe-area-context
 - App.tsx: 기존 덮어쓰기 (Bottom Tab Navigator)
 
-## 코다리 사용 예시
+## 응팔 사용 예시
 
 ```
 사용자: "다이어트 SaaS 랜딩 만들어줘"
 
-코다리:
+응팔:
 1. web_init (TEMPLATE=vite-react, PROJECT_NAME=diet-saas)
 2. pack_apply (KIT_NAME=landing-kit) ← 새 도구
 3. edit_file 로 텍스트만 다이어트 SaaS 카피로 교체

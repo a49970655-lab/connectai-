@@ -1286,7 +1286,7 @@ function isAgentTogglable(id: string): boolean {
   return OPTIONAL_AGENTS_DEFAULT.has(id) || !!LOCKED_AGENTS_DEFAULT[id];
 }
 
-/* v2.89.112 — 코다리(developer) 활성화 시 시니어 코더 모델 추천. 한 번만 표시 (active.json
+/* v2.89.112 — 응팔(developer) 활성화 시 시니어 코더 모델 추천. 한 번만 표시 (active.json
    에 _coder_recommended 플래그 기록). 사용자 시스템 메모리 추측해서 적합한 모델 추천:
    < 8GB → qwen2.5-coder:1.5b 또는 7b
    8~16GB → qwen2.5-coder:14b
@@ -1311,7 +1311,7 @@ function _maybeRecommendCoderModel(webview: vscode.Webview) {
       recommendation = { name: 'qwen2.5-coder:14b', size: '9GB', reason: '권장 코더 모델' };
     }
     const note =
-      `\n💻 **코다리 코딩 능력 강화 팁**\n` +
+      `\n💻 **응팔 코딩 능력 강화 팁**\n` +
       `현재 일반 모델로 동작합니다. 코딩 전용 모델로 바꾸면 결과 품질이 크게 올라가요.\n\n` +
       `**추천: \`${recommendation.name}\`** (${recommendation.size}) — ${recommendation.reason}\n\n` +
       `설치:\n` +
@@ -2274,7 +2274,7 @@ function _extractFirstJsonObject(raw: string): any | null {
    라이브 상태 + 자격증명 상태 점검. 일반론 답변 대신 사실만 — 사용자가
    "이건 되고 이건 안 되네" 즉시 파악. */
 function _buildCapabilityReport(): string {
-    const lines: string[] = ['👋 *영숙이에요. 지금 제가 도울 수 있는 건:*\n'];
+    const lines: string[] = ['👋 *지아에요. 지금 제가 도울 수 있는 건:*\n'];
     const tg = readTelegramConfig();
     const calOk = isCalendarWriteConnected();
     /* 1) 비서 본인의 직접 능력 */
@@ -2284,10 +2284,10 @@ function _buildCapabilityReport(): string {
     lines.push('');
     lines.push('*📨 텔레그램 양방향*');
     if (tg.token && tg.chatId) lines.push('  ✅ 작동 중 — 명령 받고 보고 보내기');
-    else lines.push('  ⚠️ 미연결 — 직원 보기 → 영숙 카드 → ⚙️에서 봇 토큰 입력');
+    else lines.push('  ⚠️ 미연결 — 직원 보기 → 지아 카드 → ⚙️에서 봇 토큰 입력');
     lines.push('');
     lines.push('*📋 작업 추적*');
-    lines.push('  ✅ "내일까지 X 해야 해" → 자동 등록, 마감 임박 시 알림');
+    lines.push('  ✅ "내일까지 X 해야 해" → 자동 등록, 마감 임합 시 알림');
     lines.push('');
     /* 2) 다른 에이전트들의 능력 */
     lines.push('*👥 회사 에이전트들 (자연어로 부르세요)*');
@@ -2312,7 +2312,7 @@ function _buildCapabilityReport(): string {
     agentSummary.push('  ✍️ *작가* — ✅ 후크·스크립트·블로그·영상 카피');
     agentSummary.push('  🎵 *루나* — ✅ BGM 자동 생성·영상-음악 합성·사운드 디자인');
     agentSummary.push('  💼 *현빈* — ✅ 가격·KPI·전략 분석');
-    agentSummary.push('  💻 *코다리* — ✅ 사이트·자동화·API 코드');
+    agentSummary.push('  💻 *응팔* — ✅ 사이트·자동화·API 코드');
     agentSummary.push('  🔍 *리서처* — ✅ 트렌드·경쟁사·사실 확인');
     agentSummary.push('  📷 *Instagram* — ✅ 릴스 기획·해시태그·카피');
     lines.push(agentSummary.join('\n'));
@@ -3792,7 +3792,7 @@ function stopDailyBriefingLoop() {
 
 /* ── v2.89.137 — Revenue Watcher (PayPal polling) ──────────────────────────
    5분마다 paypal_revenue.py OUTPUT=json 호출 → 마지막 본 transaction id 와
-   비교 → 새 결제 발견 시 텔레그램 푸시 + 사무실 영숙 책상 펄스. paypal 미설정
+   비교 → 새 결제 발견 시 텔레그램 푸시 + 사무실 지아 책상 펄스. paypal 미설정
    시 silently skip. 이게 진짜 "AI 회사가 자고 있어도 결제 알아차림" 의 코어. */
 let _revenueWatcherTimer: NodeJS.Timeout | null = null;
 const _REVENUE_LAST_SEEN_KEY = 'revenueLastSeenTxId';
@@ -3858,7 +3858,7 @@ async function _runRevenueWatcherOnce(): Promise<void> {
                     body: `${arrow}: ${subj} ${amount}`
                 });
             } catch { /* ignore */ }
-            /* 사무실 영숙 책상 펄스 + 알림 */
+            /* 사무실 지아 책상 펄스 + 알림 */
             try {
                 _activeChatProvider?.pulseAgent?.('secretary', isRefund ? '↩️' : '💰', 6000, `${arrow}: ${amount}`);
             } catch { /* ignore */ }
@@ -6155,7 +6155,7 @@ ${_GOAL_PREAMBLE}
 ## 작업 원칙
 - 텍스트 설명만 X — 색상 코드·폰트명·레이아웃 좌표까지 구체적으로
 `,
-  developer: `# 💻 코다리 — 시니어 풀스택 엔지니어
+  developer: `# 💻 응팔 — 시니어 풀스택 엔지니어
 
 ${_GOAL_PREAMBLE}
 ## 정체성
@@ -6696,7 +6696,7 @@ function _seedAgentToolsIfMissing(agentId: string) {
       _seedEditorMusicGenerate(toolsDir);
       _seedEditorMusicToVideo(toolsDir);
     } else if (agentId === 'developer') {
-      /* v2.89.112+122 — 코다리 도구. 웹·모바일 셋업 + PWA + dev server + 키트 적용. */
+      /* v2.89.112+122 — 응팔 도구. 웹·모바일 셋업 + PWA + dev server + 키트 적용. */
       const toolsDir = path.join(getCompanyDir(), '_agents', agentId, 'tools');
       fs.mkdirSync(toolsDir, { recursive: true });
       _seedDeveloperWebInit(toolsDir);
@@ -6760,7 +6760,7 @@ function _seedBusinessPaypalRevenue(toolsDir: string) {
   _seedFileForceUpgrade(path.join(toolsDir, 'paypal_revenue.md'), md, 'paypal_revenue_v1');
 }
 
-/* v2.89.112 — 코다리 도구 시드 함수들 */
+/* v2.89.112 — 응팔 도구 시드 함수들 */
 function _seedDeveloperWebInit(toolsDir: string) {
   const py = _loadToolSeed('developer/web_init.py');
   const md = _loadToolSeed('developer/web_init.md');
@@ -7384,7 +7384,7 @@ async function prefetchAgentRealtimeData(agentId: string): Promise<string> {
   }
   /* v2.89.136 — business prefetch. 현빈에게 매출 질문 들어오면 paypal_revenue.py
      자동 실행 → 거래 + 게임별 분류 + 환불·수수료 마크다운 컨텍스트로 주입 →
-     현빈이 환각 없이 진짜 숫자로 분석. 유튜브(레오) 와 동일 패턴. */
+     현빈이 환각 없이 진짜 숫자로 분석. 유튜브(보미) 와 동일 패턴. */
   if (agentId === 'business') {
     candidates.push({ tool: 'paypal_revenue.py', label: 'PayPal 매출 분석 (게임·프로젝트별, 실제 거래 데이터)' });
   }
@@ -7488,7 +7488,7 @@ function buildAgentConfigStatus(agentId: string): string {
       lines.push(`\n\n[⚠️ 비서 자격증명 일부 미설정]`);
       if (!tg.token || !tg.chatId) lines.push(`- 텔레그램 봇 미연결 (보고/메신저 기능 제한)`);
       if (!calOk) lines.push(`- Google Calendar OAuth 미연결 (일정 추가/수정 불가)`);
-      lines.push(`사용자가 해당 기능을 요청하면 "직원 보기 → 영숙 카드 → ⚙️에서 연결해주세요"라고 안내하세요.`);
+      lines.push(`사용자가 해당 기능을 요청하면 "직원 보기 → 지아 카드 → ⚙️에서 연결해주세요"라고 안내하세요.`);
     }
   }
   /* v2.89.7 — YouTube에 의존하는 다른 에이전트들도 OAuth 안내 절대 하지 않게.
@@ -7509,7 +7509,7 @@ function buildSpecialistPrompt(agentId: string): string {
   const a = AGENTS[agentId];
   const company = readCompanyName() || '1인 기업';
   /* v2.89.45 — 페르소나 블록. 에이전트별 voice 정의가 있으면 주입 → 똑같은 LLM이라도
-     레오는 데이터 중심 솔직한 톤, 영숙은 정중·친근한 톤으로 답함. 인격 있는 동료처럼 보임. */
+     보미는 데이터 중심 솔직한 톤, 지아은 정중·친근한 톤으로 답함. 인격 있는 동료처럼 보임. */
   const personaBlock = a.persona
     ? `\n\n[당신의 톤·말투 — 항상 이 페르소나 유지]\n${a.persona}`
     : '';
@@ -8382,7 +8382,7 @@ export function activate(context: vscode.ExtensionContext) {
             else if (req.method === 'POST' && req.url === '/api/template-inject') {
                 /* v2.89.120 — 템플릿 팩 주입. EZER 등 외부 도구가 코드 boilerplate
                    묶음을 주면 두뇌의 40_템플릿/<agentId>/<name>/ 로 폴더 구조로 저장.
-                   코다리 같은 에이전트가 다음 작업에 자동 참조.
+                   응팔 같은 에이전트가 다음 작업에 자동 참조.
                    payload: { agent, name, manifest, readme, files: {filename: content} } */
                 (async () => {
                     console.log('[Connect AI Bridge] /api/template-inject hit @', new Date().toISOString());
@@ -10761,7 +10761,7 @@ class CompanyDashboardPanel {
                         if (ok) {
                             const verb = want ? '활성화됨' : '비활성화됨';
                             this._postToast(`✅ ${AGENTS[aid]?.emoji || ''} ${AGENTS[aid]?.name || aid} ${verb}`, false);
-                            /* v2.89.112 — 코다리(developer) 첫 활성화 시 시니어 코더 모델 추천. */
+                            /* v2.89.112 — 응팔(developer) 첫 활성화 시 시니어 코더 모델 추천. */
                             if (want && aid === 'developer') {
                                 _maybeRecommendCoderModel(this._panel.webview);
                             }
@@ -11122,7 +11122,7 @@ class CompanyDashboardPanel {
 
         /* Build agent team section — one card per agent with persona + open
            task count + autonomy level + most recent memory line + custom
-           profile photo when available (영숙/레오). The photo URI is resolved
+           profile photo when available (지아/보미). The photo URI is resolved
            through the panel's webview so the asset is reachable from the
            sandboxed iframe. */
         const agentTeam = AGENT_ORDER.map(id => {
@@ -12731,7 +12731,7 @@ class OfficePanel {
                             recentSessions = entries.sort().slice(-5).reverse();
                             sessionCount = entries.length;
                         }
-                        /* Profile photo (영숙/레오 등) — convert to a webview URI so
+                        /* Profile photo (지아/보미 등) — convert to a webview URI so
                            the modal can render the real face instead of just the
                            sprite. Empty string when no custom photo is declared. */
                         let profileImageUri = '';
@@ -13405,7 +13405,7 @@ body.floorplan .conf-room,body.floorplan .location{display:none!important}
   box-shadow:0 0 18px rgba(0,255,65,.18),inset 0 0 0 1px rgba(255,255,255,.04);
   overflow:hidden;
 }
-/* When a custom portrait is loaded (영숙/레오), drop the gradient and let
+/* When a custom portrait is loaded (지아/보미), drop the gradient and let
    the image cover the avatar tile completely. Adds a subtle inner ring so
    the photo blends with the brand's amber border. */
 .amd-emoji.has-photo{background:transparent;padding:0}
@@ -15539,7 +15539,7 @@ window.addEventListener('message', e => {
         break;
       }
       /* Swap the avatar emoji square for a real photo when one is provided
-         (영숙/레오). The .has-photo class kills the gradient background and
+         (지아/보미). The .has-photo class kills the gradient background and
          lets the image cover the avatar tile fully. */
       try {
         const emo = document.getElementById('amdEmoji');
@@ -15773,7 +15773,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
     private _abortController?: AbortController;
     private _lastPrompt?: string;
     private _lastModel?: string;
-    /** v2.89.131 — 최근 파일 액션 추적. 코다리(또는 다른 specialist) 가 직전 turn 에
+    /** v2.89.131 — 최근 파일 액션 추적. 응팔(또는 다른 specialist) 가 직전 turn 에
      *  만든·편집한 파일의 절대 경로를 기억해서, 다음 turn 의 system prompt 에 명시
      *  주입한다. 이전엔 chat history 안 깊은 곳에 묻혀서 LLM 이 잊고 경로 추측 → 못
      *  찾는 사고 자주 났음. 가장 최근 10개만 보관, 30분 묵은 건 자동 폐기. */
@@ -15831,7 +15831,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
     }
 
     /* v2.89.45 — 에이전트 프로필 사진을 markdown으로 반환. 채팅창에 메시지 위에 prepend
-       해서 "진짜 사람이 말하는 느낌" 연출. profileImage가 정의된 에이전트(레오/영숙)만
+       해서 "진짜 사람이 말하는 느낌" 연출. profileImage가 정의된 에이전트(보미/지아)만
        사진 나오고, 나머지는 빈 문자열 → 그냥 emoji + 이름. */
     private _agentAvatarMd(agentId: string): string {
         const a = AGENTS[agentId];
@@ -15846,7 +15846,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
 
     /* v2.89.47 — 마크다운 이미지 버전. webview markdown sanitizer가 inline <img> HTML
        문자 그대로 표시하던 문제 해결. ![alt](url) 형식은 표준 마크다운이라 항상 렌더됨.
-       헤딩 라인 뒤에 같이 붙여서 ## ![](url) 📺 레오 형태로 한 줄 헤더 만듦. */
+       헤딩 라인 뒤에 같이 붙여서 ## ![](url) 📺 보미 형태로 한 줄 헤더 만듦. */
     private _agentAvatarUriMd(agentId: string): string {
         const a = AGENTS[agentId];
         if (!a?.profileImage || !this._view) return '';
@@ -16907,7 +16907,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                     break;
                 }
                 case 'prompt': {
-                    /* v2.89.146 — 명시적 호출 감지("현빈아", "코다리야" 등) 시 corporate
+                    /* v2.89.146 — 명시적 호출 감지("현빈아", "응팔아" 등) 시 corporate
                        모드 force. 사용자가 사이드바 toggle 안 해도 명시적 호출은 항상
                        specialist dispatch 흐름으로 → 매출/키트 shortcut 발동. */
                     const txt = String(msg.value || '');
@@ -17608,7 +17608,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                         const verb = want ? '활성화됨 ✅' : '비활성화됨 ⏸';
                         try { this._view?.webview.postMessage({ type: 'systemNote', value: `${AGENTS[aid]?.emoji || ''} ${AGENTS[aid]?.name || aid} ${verb}` }); } catch { /* ignore */ }
                         try { this._view?.webview.postMessage({ type: 'activeAgents', value: readActiveAgents() }); } catch { /* ignore */ }
-                        /* v2.89.112 — 코다리 첫 활성화 시 시니어 코더 모델 추천 카드 */
+                        /* v2.89.112 — 응팔 첫 활성화 시 시니어 코더 모델 추천 카드 */
                         if (want && aid === 'developer') {
                             try { if (this._view) _maybeRecommendCoderModel(this._view.webview); } catch { /* ignore */ }
                         }
@@ -19164,7 +19164,7 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
 
         /* v2.89.156 — 다중 도메인 종합 명령은 multi-agent 로 보냄.
            "유튜브 + 매출 + 종합 보고서" 같이 두 영역 동시 요청이면 단일 도구 shortcut 이
-           무시하고 multi-agent dispatch (현빈 + 레오 둘 다) 가 잡도록 여기서 바로 false. */
+           무시하고 multi-agent dispatch (현빈 + 보미 둘 다) 가 잡도록 여기서 바로 false. */
         const lpEarly = p.toLowerCase();
         const hasYoutube = /유튜브|youtube|채널|구독|조회/.test(lpEarly);
         const hasRevenue = /매출|페이팔|paypal|수익|결제|매상/.test(lpEarly);
@@ -19550,7 +19550,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
             // 1) CEO에게 작업 분해 요청 (silent — UI에는 카드 펄스만)
             // Phase 2: inject recent conversation history into CEO context so
             // planning is aware of what the company has been doing.
-            /* v2.89.132 — 명시적 호출 감지. "코다리야 …" 처럼 사용자가 직접 이름 부르면
+            /* v2.89.132 — 명시적 호출 감지. "응팔아 …" 처럼 사용자가 직접 이름 부르면
                CEO LLM 호출 건너뛰고 그 에이전트만 단독 dispatch. 30초 vs 11분 차이. */
             const explicit = this._detectExplicitMention(prompt);
             if (explicit) {
@@ -19950,7 +19950,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
                    lean 모드 = decisions·memory·brain RAG 생략 → 토큰 ~9000자 감소 →
                    추론 30~50% 빨라짐 + 환각 더 줄어듦 (메모리에서 끌어올 거리 없음). */
                 const useLeanContext = (realtimeData.length > 200) || (peerCtx.length > 500);
-                /* v2.89.131 — 최근 파일 액션 컨텍스트. 코다리가 직전에 만든 파일의 절대
+                /* v2.89.131 — 최근 파일 액션 컨텍스트. 응팔가 직전에 만든 파일의 절대
                    경로를 잊고 "_agents/developer/test/" 같은 추측 경로로 list_files
                    호출해 실패하던 사고 차단. */
                 const recentFilesCtx = this._buildRecentFilesContext(t.agent);
@@ -19958,7 +19958,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
                 const userMsg = `[CEO의 지시]\n${t.task}\n\n[원 사용자 명령 참고]\n${prompt}`;
 
                 let out = '';
-                /* v2.89.133 — 키트 shortcut. 명시적 호출(`코다리야 ...`) + 두뇌 키트
+                /* v2.89.133 — 키트 shortcut. 명시적 호출(`응팔아 ...`) + 두뇌 키트
                    강하게 매칭되는 명령이면 LLM 호출 자체 건너뛰고 pack_apply 직접 실행.
                    LM Studio 죽어있거나 context 모자라도 시연 깨지지 않음.
                    조건: explicit 호출 + t.agent === developer + 매칭 점수 ≥ 10. */
@@ -19978,7 +19978,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
                 }
                 if (shortcut) {
                     out = shortcut;
-                    /* 사무실에 작업 시작 신호 한 번 → 사용자가 코다리 카드 펄스 봄 */
+                    /* 사무실에 작업 시작 신호 한 번 → 사용자가 응팔 카드 펄스 봄 */
                     try {
                         this._broadcastCorporate({ type: 'agentBusy', agent: t.agent, elapsedSec: 0 });
                     } catch { /* ignore */ }
@@ -20863,7 +20863,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
     // --------------------------------------------------------
     /** v2.89.131 — 직전 파일 액션 추적. agentId 가 주어졌을 때만 _recentFileActions
      *  에 기록. 다음 turn 의 system prompt 에 "최근 작업한 파일" 블록으로 주입돼서
-     *  코다리가 파일 위치 잊고 추측 경로 만드는 사고 차단. */
+     *  응팔가 파일 위치 잊고 추측 경로 만드는 사고 차단. */
     private _trackFileAction(agentId: string | undefined, absPath: string, action: 'create' | 'edit' | 'delete') {
         if (!agentId) return;
         const now = Date.now();
@@ -20883,20 +20883,20 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
         }
     }
 
-    /** v2.89.132 — 명시적 에이전트 호출 감지. "코다리야 …"·"@developer …"·"개발자야 …"
+    /** v2.89.132 — 명시적 에이전트 호출 감지. "응팔아 …"·"@developer …"·"개발자야 …"
      *  처럼 사용자가 직접 이름 부른 경우 CEO 단계를 건너뛰고 그 에이전트에게만 dispatch.
      *  사용자 의도 존중 + 단순 작업의 처리 시간 5배 단축 (CEO LLM 호출 1회 + 다른
      *  specialist 4명 호출 제거). 자연어로만 명령한 경우는 None 반환 → 기존 CEO 분배. */
     private _detectExplicitMention(prompt: string): { agentId: string; agentName: string } | null {
         const lower = prompt.toLowerCase();
         /* 호출 후보: 한글 닉네임·영문 id·역할 키워드 → agentId 매핑.
-           우선순위 높은 것부터 (코다리 같은 고유 닉네임이 일반어 "개발자"보다 강함). */
+           우선순위 높은 것부터 (응팔 같은 고유 닉네임이 일반어 "개발자"보다 강함). */
         const candidates: Array<{ patterns: RegExp[]; agentId: string; agentName: string }> = [
-            { patterns: [/코다리[야아!,~ ]/, /코다리야/, /@developer\b/, /@코다리\b/], agentId: 'developer', agentName: '코다리' },
+            { patterns: [/응팔[아야!,~ ]/, /응팔아/, /@developer\b/, /@응팔\b/], agentId: 'developer', agentName: '응팔' },
             { patterns: [/현빈[아야!,~ ]/, /현빈아/, /@business\b/, /@현빈\b/], agentId: 'business', agentName: '현빈' },
             { patterns: [/루나[야아!,~ ]/, /루나야/, /@editor\b/, /@루나\b/], agentId: 'editor', agentName: '루나' },
-            { patterns: [/레오[야아!,~ ]/, /레오야/, /@youtube\b/, /@레오\b/], agentId: 'youtube', agentName: '레오' },
-            { patterns: [/영숙[아야!,~ ]/, /영숙아/, /@secretary\b/, /@영숙\b/], agentId: 'secretary', agentName: '영숙' },
+            { patterns: [/보미[야아!,~ ]/, /보미야/, /@youtube\b/, /@보미\b/], agentId: 'youtube', agentName: '보미' },
+            { patterns: [/지아[야아!,~ ]/, /지아야/, /@secretary\b/, /@지아\b/], agentId: 'secretary', agentName: '지아' },
             /* 역할 호칭 — 단, 자연스러운 명령에서 잘못 매칭 안 되게 "야"·"!"·"," 같은 호격 표지 필요 */
             { patterns: [/개발자[야아!,]/, /@developer\b/], agentId: 'developer', agentName: '개발자' },
             { patterns: [/디자이너[야아!,]/, /@designer\b/], agentId: 'designer', agentName: '디자이너' },
@@ -20970,7 +20970,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
         }
     }
 
-    /** v2.89.133 — 키트 shortcut. 명시적 코다리 호출 + 두뇌 키트와 강하게 매칭되는
+    /** v2.89.133 — 키트 shortcut. 명시적 응팔 호출 + 두뇌 키트와 강하게 매칭되는
      *  명령이면 LLM 호출 자체를 건너뛰고 pack_apply 직접 실행하는 가짜 LLM 응답을
      *  생성한다. LM Studio 가 죽어있거나 context 모자라도 시연이 깨지지 않음.
      *
@@ -21062,7 +21062,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
 
     /** v2.89.131 — fuzzy path hint. list_files/read_file 이 디렉토리 못 찾을 때
      *  비슷한 이름의 디렉토리를 _recentFileActions + 회사 폴더 하위에서 탐색해 제안.
-     *  코다리가 "_agents/developer/test/" 추측 → 실제 "_company/test/" 매핑 자동 회복. */
+     *  응팔가 "_agents/developer/test/" 추측 → 실제 "_company/test/" 매핑 자동 회복. */
     private _fuzzyPathHint(missingPath: string): string {
         const baseName = path.basename(missingPath);
         if (!baseName || baseName === '.' || baseName === '/') return '';
@@ -21108,7 +21108,7 @@ ${catalog.map((c, i) => `${i + 1}. agent=${c.agentId} tool=${c.tool} — ${c.des
     }
 
     /** v2.89.131 — system prompt 주입용 블록. 해당 에이전트가 최근 만진 파일들의
-     *  절대 경로 리스트. 코다리가 "방금 만든 파일 어디?"라고 물을 일 자체 차단. */
+     *  절대 경로 리스트. 응팔가 "방금 만든 파일 어디?"라고 물을 일 자체 차단. */
     private _buildRecentFilesContext(agentId: string): string {
         const mine = this._recentFileActions
             .filter(r => r.agentId === agentId)

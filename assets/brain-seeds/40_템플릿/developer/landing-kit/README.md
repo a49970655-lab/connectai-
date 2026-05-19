@@ -67,7 +67,7 @@ export default function App() {
 ### 5. 텍스트만 수정
 각 컴포넌트의 props 또는 인라인 텍스트를 본인 제품에 맞게 바꾸기.
 
-## 컨벤션 (코다리가 따라야 할 규칙)
+## 컨벤션 (응팔가 따라야 할 규칙)
 
 - **모든 섹션** = `<section className="py-16 sm:py-24 px-6">` 패턴
 - **컨테이너** = `<div className="max-w-6xl mx-auto">` 패턴

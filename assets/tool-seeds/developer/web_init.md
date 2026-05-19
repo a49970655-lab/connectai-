@@ -35,7 +35,7 @@ python3 web_init.py
 
 ## 다음 단계
 
-셋업 후 코다리가:
+셋업 후 응팔가:
 1. `web_preview` 도구로 dev server 실행
 2. 사용자 요구사항대로 컴포넌트 추가
 3. `pwa_setup` 으로 PWA 만들기 (모바일 앱처럼)

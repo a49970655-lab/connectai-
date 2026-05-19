@@ -1,7 +1,7 @@
 <!-- version: lint_test_v1 -->
 # 🧪 lint_test — 자가 검증 + 결과 inject
 
-코다리가 코드를 만든 직후 호출 → 결과가 다음 LLM 컨텍스트로 inject → 실패 시 자동 재시도.
+응팔가 코드를 만든 직후 호출 → 결과가 다음 LLM 컨텍스트로 inject → 실패 시 자동 재시도.
 
 ## 동작
 1. `package.json` 의 `scripts.{typecheck, lint, test, build}` 자동 감지·실행
@@ -14,7 +14,7 @@
 - `PROJECT_PATH`: 비우면 web_init 마지막 결과
 - `STRICT`: `true` 면 첫 실패에서 중단. 기본 `false` (전부 시도)
 
-## 코다리 권장 흐름
+## 응팔 권장 흐름
 ```
 1. <create_file 또는 edit_file>
 2. <run_command>python3 .../lint_test.py</run_command>
@@ -24,4 +24,4 @@
 
 ## 한계
 - `eslint --fix` 같은 자동 수정은 별도 — 도구가 단지 보고만 함
-- 단위 테스트 미통과 시 코드 수정 책임은 코다리에게
+- 단위 테스트 미통과 시 코드 수정 책임은 응팔에게
