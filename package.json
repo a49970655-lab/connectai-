@@ -1,14 +1,14 @@
 {
-  "name": "connect-ai-lab",
-  "displayName": "Connect AI — AI 1인 기업 · 나만의 에이전트 팀 · 제2의 두뇌",
-  "description": "AI 1인 기업가를 위한 워크스페이스. 나만의 AI 에이전트 팀과 제2의 두뇌가 한 곳에서 — CEO + 전문 에이전트들이 내 지식·결정 로그·메모리를 컨텍스트로 24시간 미션 향해 자동으로 일합니다. 100% 로컬·오프라인·무료.",
-  "version": "2.89.157",
-  "publisher": "connectailab",
+  "name": "Calm Carry",
+  "displayName": "Calm Carry",
+  "description": "Calm Carry를 위해 일하는 AI 에이전트 팀. 기획, 개발, 마케팅까지 1인 기업의 모든 업무를 자동으로 처리하는 로컬 오프라인 워크스페이스입니다.",
+  "version": "1.0.0",
+  "publisher": "Calm Carry",
   "license": "MIT",
   "icon": "assets/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wonseokjung/connect-ai"
+    "url": "https://github.com/a49970655-lab/connectai-"
   },
   "engines": {
     "vscode": "^1.80.0"
@@ -297,7 +297,11 @@
         },
         "connectAiLab.secretaryBridgeMode": {
           "type": "string",
-          "enum": ["off", "output_only", "full"],
+          "enum": [
+            "off",
+            "output_only",
+            "full"
+          ],
           "enumDescriptions": [
             "Off — 비서는 텔레그램에서만 활동. 사이드바는 CEO와 직접 대화 (현재 동작)",
             "출력만 — specialist 산출물 끝에 비서가 한 줄로 사장님께 정리 카드 추가",
