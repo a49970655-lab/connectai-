@@ -2,10 +2,10 @@
   <img src="assets/icon.png" width="120" alt="Connect AI Logo" />
 </p>
 
-<h1 align="center">마이 에이전시 (My AI Agency)</h1>
+<h1 align="center">Calm Carry 에이전시 (Calm Carry AI Agency)</h1>
 
 <p align="center">
-  <strong>오직 나만을 위해 일하는 1인 기업 전용 AI 에이전트 워크스페이스</strong><br/>
+  <strong>Calm Carry을 위해 일하는 1인 기업 전용 AI 에이전트 워크스페이스</strong><br/>
   VS Code / Cursor 환경을 활용하여 기획, 마케팅, 개발까지 나만의 AI 직원들이 24시간 자율적으로 일합니다.
 </p>
 
