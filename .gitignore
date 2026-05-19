@@ -7,3 +7,10 @@ preview.html
 releases/
 .env
 *.bak.*
+
+# 에이전트 로컬 자격증명 및 도구 설정 제외 (보안)
+_company/_agents/*/tools/
+_company/agents/*/tools/
+_company/_shared/tracker.json
+_company/_shared/calendar_cache.md
+
