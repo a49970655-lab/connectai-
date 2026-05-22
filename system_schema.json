@@ -8,7 +8,7 @@
     "core_principle": "100% Local · 100% Offline · 100% Free"
   },
   "environment": {
-    "workspace_path": "/Users/jay/로컬테스트/local-ai-coder",
+    "workspace_path": "C:/1인기업프로젝트/connectai-",
     "file_system_access": "Direct, offline access to the local file system via agent actions.",
     "context_source": "Local workspace files and optional GitHub knowledge base."
   },
@@ -45,7 +45,7 @@
   ],
   "configuration": {
     "engine_options": {
-      "default_model": "gemma4:e2b",
+      "default_model": "gemma4:e4b",
       "ollama_url": "http://127.0.0.1:11434"
     },
     "operational_settings": {

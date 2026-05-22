@@ -7,19 +7,27 @@
 ## 1. 프로젝트 위치 및 핵심 파일
 
 ```
-/Users/jay/로컬테스트/local-ai-coder/
+.
 ├── package.json          ← 설정 스키마 (contributes.configuration)
 ├── src/
-│   └── extension.ts      ← 모든 로직이 담긴 단일 파일 (2600+ lines)
+│   ├── extension.ts      ← 메인 활성화 및 컨트롤러 로직
+│   ├── utils.ts          ← 공통 유틸리티, Git/쉘 실행 헬퍼, Python 환경 감지 등
+│   ├── paths.ts          ← 로컬 지식 및 컴퍼니 디렉토리 경로 해결 헬퍼
+│   ├── agents.ts         ← 에이전트 인터페이스 정의
+│   └── system-specs.ts   ← 시스템 스펙 정의
 ├── out/
-│   └── extension.js      ← 빌드 결과물 (esbuild)
+│   └── extension.js      ← 빌드 결과물 (esbuild로 번들링됨)
 ├── brain-viz.html        ← 지식 네트워크 시각화 HTML
 └── system_schema.json    ← AI 에이전트 도구 스키마
 ```
 
-**핵심 파일은 딱 2개:**
-- `package.json` — VS Code 설정 스키마 선언
-- `src/extension.ts` — 모든 동기화 로직
+**핵심 구성 요소:**
+- `package.json` — VS Code 익스텐션 정의 및 설정 스키마 선언
+- `src/extension.ts` — 메인 라이프사이클 및 서버 엔드포인트 제어
+- `src/utils.ts` — 범용 헬퍼 및 OS/프로세스 상호작용 추상화
+- `src/paths.ts` — 지식 보관 디렉토리 경로 헬퍼
+- `src/agents.ts` — 에이전트 추상화 정의
+- `src/system-specs.ts` — 시스템 사양 정의
 
 ---
 
@@ -199,11 +207,24 @@ gh release create v{version} connect-ai-lab-{version}.vsix -t "Release v{version
 
 ## 8. 관련 외부 프로젝트
 
-| 프로젝트 | 경로 | 역할 |
-|---------|------|------|
-| EZERAI | `/Users/jay/EZERAI` | 웹사이트 (Brain Pack 스토어) |
-| firstclass | `/Users/jay/Desktop/aicitybuilders/firstclass` | 수강 플랫폼 |
-| memory | `https://github.com/wonseokjung/memory` | 실제 지식 저장소 예시 |
+| 프로젝트 | 역할 |
+|---------|------|
+| EZERAI | 웹사이트 (Brain Pack 스토어) |
+| firstclass | 수강 플랫폼 |
+| memory | 실제 지식 저장소 예시 |
 
 EZERAI 웹사이트의 `AgentMarketplace.tsx`에서 Brain Pack "주입하기" 버튼을 누르면,
 `fetch('http://127.0.0.1:4825/api/brain-inject', ...)` 로 이 익스텐션에 POST 요청을 보냄.
+
+---
+
+## 9. 모듈 분리 로드맵 (Modularization Roadmap)
+
+익스텐션 메인 로직 파일인 `src/extension.ts`가 지나치게 비대해지는 것을 방지하기 위해 다음과 같은 단계적 모듈화 로드맵을 구성하여 진행하고 있습니다:
+
+1. **유틸리티 및 헬퍼 분리 (완료)**:
+   - 보안 검사, 파일 I/O 및 경로 검증, Git 명령 래퍼, Python 환경 검출 등의 유틸리티를 [utils.ts](file:///C:/1인기업프로젝트/connectai-/src/utils.ts) 및 [paths.ts](file:///C:/1인기업프로젝트/connectai-/src/paths.ts) 파일로 분리.
+2. **HTTP 서버 및 라우팅 컨트롤러 분리 (진행 예정)**:
+   - `connect-ai-bridge` 역할을 하는 로컬 HTTP/WebSocket 서버 로직을 `src/server/` 디렉토리 아래 `server.ts`, `routes.ts`, `controllers.ts` 등으로 나누어 분리.
+3. **에이전트별 도구 및 프로세스 제어 분리 (진행 예정)**:
+   - 각 에이전트(CEO, Secretary, Planner 등)의 프롬프트 처리와 개별 도구(Tool) 실행/감시 로직을 `src/agents/` 디렉토리 하위 모듈로 독립화.

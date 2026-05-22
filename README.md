@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-2.1.30-blue" alt="version" />
+  <img src="https://img.shields.io/badge/version-2.89.156-blue" alt="version" />
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license" />
   <img src="https://img.shields.io/badge/integration-Agent_University-purple" alt="integration" />
   <img src="https://img.shields.io/badge/engine-Ollama%20%7C%20LM%20Studio-orange" alt="engine" />
@@ -20,7 +20,7 @@
 
 ## 🌟 Overview: The P-Reinforce Architecture
 
-Connect AI v2.1.30은 단순한 코딩 에이전트를 넘어섭니다. **P-Reinforce 아키텍처**를 기반으로 설계된 이 에이전트는 사용자의 모든 정보와 지시를 받아들여 **스스로 의미를 분석하고, 폴더를 생성하고, 마크다운 위키 파일로 정리하여 클라우드에 자동 백업**하는 자율 지식 정원사(Autonomous Gardener)입니다.
+Connect AI v2.89.156은 단순한 코딩 에이전트를 넘어섭니다. **P-Reinforce 아키텍처**를 기반으로 설계된 이 에이전트는 사용자의 모든 정보와 지시를 받아들여 **스스로 의미를 분석하고, 폴더를 생성하고, 마크다운 위키 파일로 정리하여 클라우드에 자동 백업**하는 자율 지식 정원사(Autonomous Gardener)입니다.
 
 ---
 
@@ -61,7 +61,7 @@ Ollama 또는 LM Studio에 설치된 모델을 내부 API(`v1/models`)를 호출
 
 ### A.U 멤버십 유저 (Recommended)
 1. 상단 탭의 [Releases](https://github.com/wonseokjung/connect-ai/releases) 메뉴로 진입.
-2. 최신 `v2.1.30.vsix` 파일을 다운로드.
+2. 최신 `v2.89.156.vsix` 파일을 다운로드.
 3. VS Code 에서 `Cmd+Shift+P` → **Extensions: Install from VSIX** → 다운받은 파일 선택
 
 ### 개발자 빌드 (Build from Source)
