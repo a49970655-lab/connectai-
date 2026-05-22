@@ -5888,7 +5888,7 @@ const AGENT_TOOLS_CATALOG: Record<string, { tool: string; desc: string; planned?
         { tool: 'competitor_brief', desc: '경쟁 채널 → 지시문 형식 다음 액션' },
         { tool: 'telegram_notify', desc: '다른 도구 보고를 메신저로 자동 푸시' },
         { tool: 'comment_replier', desc: '댓글 분류 + 답글 초안 (Draft 레벨)', planned: true },
-        { tool: 'video_uploader', desc: '제목·태그·썸네일·예약발행 업로드', planned: true },
+        { tool: 'video_uploader', desc: '제목·태그·썸네일·예약발행 업로드' },
         { tool: 'analytics_pull', desc: '주간 인사이트 (조회수·시청 지속률·구독 전환)', planned: true }
     ],
     instagram: [
@@ -6927,6 +6927,8 @@ OS 차이: 백그라운드 프로세스는 맥/리눅스에선 \`nohup ... &\`, 
 // On any conflict / auth failure, surface a friendly message
 // and let the user resolve it via the manual sync menu.
 // ============================================================
+let _autoSyncRunning = false;
+
 async function _safeGitAutoSync(brainDir: string, commitMsg: string, provider: any = null) {
     if (_autoSyncRunning) return; // dedup: another auto-sync (or manual sync) is already running
     _autoSyncRunning = true;
@@ -11676,6 +11678,7 @@ const YT_OAUTH_SCOPES = [
     'https://www.googleapis.com/auth/youtube.readonly',
     'https://www.googleapis.com/auth/yt-analytics.readonly',
     'https://www.googleapis.com/auth/youtube.force-ssl', /* needed for posting comment replies */
+    'https://www.googleapis.com/auth/youtube.upload', /* 👈 업로드 권한 추가 */
 ].join(' ');
 
 function _ytOAuthTokenPath(): string {
