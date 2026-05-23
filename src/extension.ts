@@ -20,6 +20,7 @@ import {
 // Connect AI — Full Agentic Local AI for VS Code
 // 100% Offline · File Create · File Edit · Terminal · Multi-file Context
 // ============================================================
+let _autoSyncRunning = false;
 
 // Settings are read from VS Code configuration (File > Preferences > Settings)
 function getConfig() {
@@ -6927,7 +6928,6 @@ OS 차이: 백그라운드 프로세스는 맥/리눅스에선 \`nohup ... &\`, 
 // On any conflict / auth failure, surface a friendly message
 // and let the user resolve it via the manual sync menu.
 // ============================================================
-let _autoSyncRunning = false;
 
 async function _safeGitAutoSync(brainDir: string, commitMsg: string, provider: any = null) {
     if (_autoSyncRunning) return; // dedup: another auto-sync (or manual sync) is already running
@@ -17974,16 +17974,46 @@ class SidebarChatProvider implements vscode.WebviewViewProvider {
                 catch { apiUrl = 'http://127.0.0.1:1234/v1/chat/completions'; isLMStudio = true; }
             }
 
-            // Separate images from text files
+            // Separate images, videos, and text files
             const imageFiles = files.filter(f => f.type.startsWith('image/'));
-            const textFiles = files.filter(f => !f.type.startsWith('image/'));
+            const videoExtensions = ['.mp4', '.mov', '.avi', '.mkv', '.webm', '.flv', '.3gp', '.wmv'];
+            const isVideoFile = (f: {name: string, type: string}) => {
+                const ext = path.extname(f.name).toLowerCase();
+                return f.type.startsWith('video/') || videoExtensions.includes(ext);
+            };
+            const videoFiles = files.filter(f => isVideoFile(f));
+            const textFiles = files.filter(f => !f.type.startsWith('image/') && !isVideoFile(f));
 
-            // Build text context from non-image files
+            const tmpUploadsDir = path.join(_getBrainDir(), 'tmp_uploads');
+            if (videoFiles.length > 0) {
+                try {
+                    if (!fs.existsSync(tmpUploadsDir)) {
+                        fs.mkdirSync(tmpUploadsDir, { recursive: true });
+                    }
+                } catch (e) {
+                    console.error('[Connect AI] Failed to create tmp_uploads dir:', e);
+                }
+            }
+
+            // Build text context from non-image, non-video files
             let fileContext = '';
             for (const f of textFiles) {
                 // data is base64 encoded, decode to utf-8 text
                 const decoded = Buffer.from(f.data, 'base64').toString('utf-8');
                 fileContext += `\n\n[첨부 파일: ${f.name}]\n\`\`\`\n${decoded.slice(0, 20000)}\n\`\`\``;
+            }
+
+            // Save video files as binary and provide local paths in prompt context
+            for (const f of videoFiles) {
+                const destPath = path.join(tmpUploadsDir, f.name);
+                try {
+                    const decodedBuffer = Buffer.from(f.data, 'base64');
+                    fs.writeFileSync(destPath, decodedBuffer);
+                    fileContext += `\n\n[동영상 파일 첨부됨 (로컬 경로: ${destPath})]\nAI 에이전트(보미)가 YouTube 동영상 업로드 툴(video_uploader)을 사용하여 이 경로의 동영상을 유튜브에 업로드할 수 있습니다.`;
+                } catch (e: any) {
+                    console.error(`[Connect AI] Failed to save video file ${f.name}:`, e);
+                    fileContext += `\n\n[동영상 파일 첨부 실패: ${f.name}] (저장 실패 오류: ${e.message})`;
+                }
             }
 
             const userContent = prompt + fileContext;
